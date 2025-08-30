@@ -38,6 +38,9 @@ and a temperature stability calculation (same as above however with the standard
 //----------------------//  RECURSIVE GEOMETRY SHAPES  //----------------------//
                                  (Question Three)
 
-
+This program uses recursive funcions to draw fractal polygons with Python's turtle graphics. 
+The script has two main parts: a recursive function that replaces each straight edge of a polygon with four smaller segments to form an inward-pointing indentation, 
+and a polygon-drawing function that applies this process to every side of the shape. 
+The user is asked to enter the number of sides, the side length, and the recursion depth, and the program generates the fractal pattern on the screen.
 
 
