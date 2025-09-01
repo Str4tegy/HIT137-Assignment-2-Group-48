@@ -95,7 +95,7 @@ while True:
 
 while True:
         try:                                                   
-            val2 = int(input("Enter the first encryption number: "))    
+            val2 = int(input("Enter the second encryption number: "))    
             if int (val2) < 0:                                 
                 val2=print("Please enter a positive integer")  
                 continue
