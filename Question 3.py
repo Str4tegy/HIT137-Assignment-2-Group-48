@@ -20,36 +20,36 @@ def DrawPolygon(sides, length, depth):
 
 def main():
     while True:
-        try:
-            sides = int(input("Enter the number of sides "))
-            if int (sides) < 0:
-                sides=print("Please enter a positive integer")
+        try:                                                    #Recieves an integer input from the user regarding the number of sides.
+            sides = int(input("Enter the number of sides "))    
+            if int (sides) < 0:                                 #Checks that the input is positive, and if it is negative, it tells the user to enter a positive integer and repeats the loop of asking for an integer input.
+                sides=print("Please enter a positive integer")  
                 continue
-            else:
+            else:                                               #If the input is not a ValueError or negative, it breaks the loop and accepts the input.
                 break
-        except ValueError:
+        except ValueError:                                      #If there is a ValueError, it asks the user for an positive integer and repeats the loop of asking for an integer input.
                 sides=print("Please enter a positive integer")
 
     while True:
-        try:
-            length = float(input("Enter the side length "))
-            if float (length) < 0:
+        try:                                                    #Recieves a float input from the user regarding the lenght of each side.
+            length = float(input("Enter the side length "))     
+            if float (length) < 0:                              #Checks that the input is positive, and if it is negative, it tells the user to enter a positive number, and repeats the loop of asking for a float input.
                 length=print("Please enter a positive number")
                 continue
-            else:
+            else:                                               #If the input is not a ValueError or negative, it breaks the loop and accepts the input.
                 break
-        except ValueError:
+        except ValueError:                                      #If there is a ValueError, it asks the user for a positive number and repeats the loop of asking for a float input.
                 length=print("Please enter a positive number")
 
     while True:
-        try:
+        try:                                                    #Recieves an integer input from the user regarding the recursion depth.
             depth = int(input("Enter the recursion depth "))
-            if int (depth) < 0:
+            if int (depth) < 0:                                 #Checks that the input is positive, and if it is negative, it tells the user to enter a positive integer, and repeats the loop of asking for an integer input.
                 depth=print("Please enter a positive integer")
                 continue
-            else:
+            else:                                               #If the input is not a ValueError or negative, it breaks the loop and accepts the input.
                 break
-        except ValueError:
+        except ValueError:                                      #If there is a ValueError, it asks the user for a positive integer and repeats the loop of asking for an integer input. 
                 depth=print("Please enter a positive integer")
 
     turtle.speed(0)  
