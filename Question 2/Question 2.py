@@ -71,13 +71,14 @@ for place in alltemps:
 #This creates a second dictionary of ranges in the order of the highest to lowest range
 OrderedRange = dict(sorted(RangeDict.items(), key=lambda item: item[1], reverse=True))
 
-
+#Loops add the highest ten ranges to the writing string
 for place in OrderedRange:
     rangestring = rangestring + (f'Station: {place}: Range {OrderedRange[place]}°C (Max: {max(alltemps[place])}°C, Min: {min(alltemps[place])}°C)\n')
     counter = counter + 1
     if counter == 10:
         break
 
+#This loop determines the writing of the ties section (if there are any ties, the first will be prefaced with a message indicating there are ties, then a list of the ties are written)
 for Rngno in dict(sorted(ReverseRangeDict.items(), reverse=True)):
     if len(ReverseRangeDict[Rngno]) >= 2:
         if rangestring.count('ties') == 1:
@@ -88,9 +89,12 @@ for Rngno in dict(sorted(ReverseRangeDict.items(), reverse=True)):
             rangestring = rangestring + (f'\nThe following ties ocurred:\nRange {Rngno}°C')
             for station in ReverseRangeDict[Rngno]:
                 rangestring = rangestring + (f', {station}')
+
+#These two lines create the ordered list/dictionaries needed for writing, ReverseDevDict contains a dictionary where the stability is the key, ORDevList is a list where each item is a stability value, sorted in order to assist in the proceeding loops
 ReverseDevDict = dict(sorted(ReverseDevDict.items(), reverse=True))
 ORDevList = list(dict(sorted(ReverseDevDict.items(), reverse=True)).keys())
 
+#The next two if statements determine the first two chunks of the stability file, the first prints information on the most stable stations and whether the spot is tied, same with the next if statement but for the least stable stations
 if len(ReverseDevDict[ORDevList[-1]]) >= 2:
     devstring = devstring + (f'The Most Stable stations have a Stdev of {ORDevList[-1]}°C')
     for station in (ReverseDevDict[ORDevList[-1]]):
@@ -105,6 +109,7 @@ if len(ReverseDevDict[ORDevList[0]]) >= 2:
 else:
     devstring = devstring + (f'\nMost Variable: Station {ReverseDevDict[ORDevList[0]]}: StdDev {ORDevList[0]}°C')
 
+#This loop adds all the ties in the stability data set into the writing string
 for Devno in dict(sorted(ReverseDevDict.items(), reverse=True)):
     if len(ReverseDevDict[Devno]) >= 2:
         if devstring.count('ties') == 1:
@@ -116,12 +121,13 @@ for Devno in dict(sorted(ReverseDevDict.items(), reverse=True)):
             for station in ReverseDevDict[Devno]:
                 devstring = devstring + (f', {station}')
 
-
+#The following two lines write the strings containing the processed data into their respective files
 with open ("largest_temp_range_station.txt", "w") as rngfile:
     rngfile.write(rangestring)
 with open ("temperature_stability_stations.txt", "w") as devfile:
     devfile.write(devstring)
 
+#Short messages to the user to confirm that the processing is complete
 print('\nActions complete')
 time.sleep(1)
 print('\nResults available in:\naverage_temp.txt\nlargest_temp_range_station.txt\ntemperature_stability_stations.txt')
