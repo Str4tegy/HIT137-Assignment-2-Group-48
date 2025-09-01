@@ -81,9 +81,28 @@ def verification():
     else:
         print("The decryption was unsuccessful.")
 
-# Getting the shifting variables
-val1 = int(input("Enter the first encryption number: "))
-val2 = int(input("Enter the second encryption number: "))
+# These loops are to receive an integer input from the user, to be utilised as the shifting encryption values
+while True:
+        try:                                                   
+            val1 = int(input("Enter the first encryption number: "))    
+            if int (val1) < 0:                                 
+                val1=print("Please enter a positive integer")  
+                continue
+            else:                                               
+                break
+        except ValueError:                                      
+                val1=print("Please enter a positive integer")
+
+while True:
+        try:                                                   
+            val2 = int(input("Enter the first encryption number: "))    
+            if int (val2) < 0:                                 
+                val2=print("Please enter a positive integer")  
+                continue
+            else:                                               
+                break
+        except ValueError:                                      
+                val2=print("Please enter a positive integer")
 
 print("\nLoading...\n")
 
