@@ -19,9 +19,38 @@ def DrawPolygon(sides, length, depth):
         turtle.right(360 / sides)
 
 def main():
-    sides = int(input("Enter the number of sides: "))
-    length = float(input("Enter the side length: "))
-    depth = int(input("Enter the recursion depth: "))
+    while True:
+        try:
+            sides = int(input("Enter the number of sides "))
+            if int (sides) < 0:
+                sides=print("Please enter a positive integer")
+                continue
+            else:
+                break
+        except ValueError:
+                sides=print("Please enter a positive integer")
+
+    while True:
+        try:
+            length = float(input("Enter the side length "))
+            if float (length) < 0:
+                length=print("Please enter a positive number")
+                continue
+            else:
+                break
+        except ValueError:
+                length=print("Please enter a positive number")
+
+    while True:
+        try:
+            depth = int(input("Enter the recursion depth "))
+            if int (depth) < 0:
+                depth=print("Please enter a positive integer")
+                continue
+            else:
+                break
+        except ValueError:
+                depth=print("Please enter a positive integer")
 
     turtle.speed(0)  
     turtle.hideturtle()
