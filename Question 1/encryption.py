@@ -25,10 +25,11 @@ for char in range(ord("N"), ord("Z") + 1):
 # Encryption Function
 def encryption(shift1, shift2):
     global encrypted_text
-    # Going through each character within
+    # Going through each character within the 'raw_text' file
     for c in text:
         temp_num = ord(c)
 
+        # Checking where each character is located and shifting it according to the values inputted
         if c in a_to_m:
             temp_num = temp_num + (shift1 * shift2)
             while temp_num > ord("m"):
@@ -115,16 +116,20 @@ with open("encrypted_text.txt", "w") as f:
 
 print("Done! The encrypted text should be in the text file.")
 
+# Getting text from 'encrypted_text.txt'
 with open("encrypted_text.txt") as f:
     text_back = f.read()
 
 print("\nDecrypting...\n")
 
+# Calling decryption function
 decryption(val1, val2)
 
+# Writing decrypted text in the 'decrypted_text.txt'
 with open("decrypted_text.txt", "w") as f:
     f.write(decrypted_text)
 
 print("Done! The decrypted text should be in the text file.")
 
+# Calling the verification function
 verification()
