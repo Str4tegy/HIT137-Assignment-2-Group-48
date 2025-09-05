@@ -1,25 +1,22 @@
-import turtle
+import turtle                                                   #Required for turtle graphics
+
+i=0                                                             #Defining the variable required for later loops
 
 def DrawEdge(length, depth):
-    # Base case - Draw a straight line if the recursion depth is equal to 0
-    if depth == 0:
+    if depth == 0:                                              #Base case - Draw a straight line if the recursion depth is equal to 0
         turtle.forward(length)
     else:
-        length /= 3.0 # Split line into 3 equal parts
-        DrawEdge(length, depth - 1) # Drawing 1st segment
-        turtle.right(60) # Turn right to forming the triangular bump
-        DrawEdge(length, depth - 1) # Drawing 2nd segment
-        turtle.left(120) # Turn left sharply forming the peak of the bump
-        DrawEdge(length, depth - 1) # Drawing 3rd segment
-        turtle.right(60) # Turn back to right alligning with the original direction
-        DrawEdge(length, depth - 1) # Drawing 4th segment
+         length /= 3.0                                          #Otherwise, split the line into 3 equal parts
+         for i in range (0,3):                                  #Create a loop which repeats 3 times
+              DrawEdge(length, depth -1)                        #Draw one segment
+              turtle.right((60+180*i))                          #Change the direction of the turtle so the 3 segments form a triangle
+              i+=1                                              #Necessary for the loop
+         DrawEdge(length, depth -1)                             #Drawing the fourth segment
 
 def DrawPolygon(sides, length, depth):
     for _ in range(sides):
-        # Drawing one fractal edge
-        DrawEdge(length, depth)
-        # Rotate direction for next side
-        turtle.right(360 / sides)
+        DrawEdge(length, depth)                                 #Drawing one fractal edge
+        turtle.right(360 / sides)                               #Rotate direction for next side
 
 def main():
     while True:
@@ -55,17 +52,15 @@ def main():
         except ValueError:                                      #If there is a ValueError, it asks the user for a positive integer and repeats the loop of asking for an integer input. 
                 depth=print("Please enter a positive integer")
 
-    # Turtle configuration settings
-    turtle.speed(0)  
+    turtle.speed(0)                                             #These are the turtle configuration settings
     turtle.hideturtle()
     turtle.penup()
     turtle.goto(-length/2, length/2)  
     turtle.pendown()
-    # Drawing the fractal polygon
-    DrawPolygon(sides, length, depth)
-    # Keeps window open until user closes it
-    turtle.done()
+
+    DrawPolygon(sides, length, depth)                           #Drawing the fractal polygon
+
+    turtle.done()                                               #Keeps window open until user closes it
 
 if __name__ == "__main__":
     main()
-
